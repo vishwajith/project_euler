@@ -1,69 +1,8 @@
-""" Test 1- Multiples of 3 or 5 below 1000"""
+""" Project Eulers test round-1"""
 
+### general ones ###
 
-def solve_problem_1():
-    """ """
-    data_output = 0
-    
-    for i in range(0,1000):
-        
-        if (i%3==0) or (i%5==0):
-            data_output += i
-            
-    return data_output
-
-def solve_problem_48():
-    """ Last 10 digit of the series.
-    
-    Ans: 9110846700"""
-    
-    final_sum = 0
-    
-    for i in xrange(1, 1000):
-        squared_data = i**i
-        
-        final_sum += squared_data
-        
-    return final_sum
-
-def solve_problem_34():
-    """ Digit factorials.
-    
-    Ans: 40730"""
-    
-    from math import factorial
-    l = lambda n: reduce(lambda x, y: int(x) + factorial(int(y)),
-                         [d for d in "0" + str(n)])
-    print(reduce(lambda x,y: x+y,
-                 filter(lambda x: x == l(x),
-                        xrange(3, 100000))))
-
-def solve_problem_97():
-    """ Large non-Mersenne prime.
-    
-    Ans: 8739992577"""
-    
-    final_sum = (28433 * (2**7830457) + 1)
-
-    return str(final_sum)[-10:]
-
-
-def solve_problem_56():
-    """ Powerful digit sum.
-    
-    Ans: 972"""
-    
-    #data_list = [int(a**b) for a in range(1, 100) for b in range(1, 100)]
-        
-    print max([sum([int(c) for c in str(a**b)]) for a in range(1, 100) for b in range(1, 100)])
-
-    
-def solve_problem_13():
-    """ Large sum 
-    
-    Ans:5537376230"""
-    
-    data_list =    [37107287533902102798797998220837590246510135740250,
+data_list_for_problem_13 =    [37107287533902102798797998220837590246510135740250,
                     46376937677490009712648124896970078050417018260538,
                     74324986199524741059474233309513058123726617309629,
                     91942213363574161572522430563301811072406154908250,
@@ -163,9 +102,33 @@ def solve_problem_13():
                     72107838435069186155435662884062257473692284509516,
                     20849603980134001723930671666823555245252804609722,
                     53503534226472524250874054075591789781264330331690]
-                    
+
+def fibo(n):
+    a, b = 0, 1
+    for i in xrange(n):
+        yield a
+        a, b = b, a + b
+    
+#####
+
+def solve_problem_1():
+    """ """
+    data_output = 0
+    
+    for i in range(0,1000):
+        
+        if (i%3==0) or (i%5==0):
+            data_output += i
+            
+    return data_output
+
+def solve_problem_13():
+    """ Large sum 
+    
+    Ans:5537376230"""
+           
     sum_output = 0
-    for each in data_list:
+    for each in data_list_for_problem_13:
         sum_output += each
         
     return str(sum_output)[:10]
@@ -187,14 +150,61 @@ def solve_problem_16():
 def solve_problem_20():
     """ Factorial digit sum.
     
-    Ans: 1366"""
+    Ans: 648"""
     
-    def fib(n):
-        a,b = 1,1
-        for i in range(n-1):
-            a,b = b,a+b
-            return a
-    print fib(5)
+    import math
+    
+    total_sum = 0
+    for each in str(math.factorial(100)):
+        total_sum += int(each)
+        
+    return total_sum
+
+def solve_problem_34():
+    """ Digit factorials.
+    
+    Ans: 40730"""
+    
+    from math import factorial
+    l = lambda n: reduce(lambda x, y: int(x) + factorial(int(y)),
+                         [d for d in "0" + str(n)])
+    print(reduce(lambda x,y: x+y,
+                 filter(lambda x: x == l(x),
+                        xrange(3, 100000))))
+
+def solve_problem_48():
+    """ Last 10 digit of the series.
+    
+    Ans: 9110846700"""
+    
+    final_sum = 0
+    
+    for i in xrange(1, 1000):
+        squared_data = i**i
+        
+        final_sum += squared_data
+        
+    return final_sum
+
+def solve_problem_56():
+    """ Powerful digit sum.
+    
+    Ans: 972"""
+    
+    #data_list = [int(a**b) for a in range(1, 100) for b in range(1, 100)]
+        
+    print max([sum([int(c) for c in str(a**b)]) for a in range(1, 100) for b in range(1, 100)])
+
+
+def solve_problem_97():
+    """ Large non-Mersenne prime.
+    
+    Ans: 8739992577"""
+    
+    final_sum = (28433 * (2**7830457) + 1)
+
+    return str(final_sum)[-10:]    
+    
 
 ##Just for reference ##
 def solve_problem_2():
